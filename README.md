@@ -4,7 +4,7 @@ A Rust program to view formatted markdown in-terminal
 [x] Bold text    
 [x] Italic text    
 [x] Bold-and-italic text    
-[ ] Block quotes    
+[x] Block quotes    
 [ ] Nested block quotes    
 [ ] Unordered lists    
 [ ] Ordered lists    
