@@ -5,10 +5,11 @@ A Rust program to view formatted markdown in-terminal
 [x] Italic text    
 [x] Bold-and-italic text    
 [x] Block quotes    
-[ ] Nested block quotes    
+[x] Nested block quotes    
 [ ] Unordered lists    
 [ ] Ordered lists    
 [ ] Multi-layer lists    
 [ ] Headers    
-[ ] Codeblocks    
+[x] Inline Code
+[ ] Multiline codeblocks
 [ ] Images (alt text only)
