@@ -7,12 +7,18 @@ use std::path::Path;
 static HELPSCREEN: &str = "Usage: tmd filename";
 static BOLD: &str = "\x1b[1m";
 static END_BOLD: &str = "\x1b[22m";
+
 static ITALIC: &str = "\x1b[3m";
 static END_ITALIC: &str = "\x1b[23m";
-static NORMAL: &str = "\x1b[0m";
-static QUOTE: &str = "▌";
+
 static CODEBLOCK: &str = "\x1b[7m";
 static END_CODEBLOCK: &str = "\x1b[27m";
+
+static STRIKE: &str = "\x1b[9m";
+static END_STRIKE: &str = "\x1b[29m";
+
+static NORMAL: &str = "\x1b[0m";
+static QUOTE: &str = "▌";
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Vec<String> = env::args().collect();
@@ -28,6 +34,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut bold = false;
     let mut italic = false;
     let mut code = false;
+    let mut struck = false;
     for line in buffered.lines() {
         let mut line = line.unwrap_or(String::from(""));
         // This loop will contain the majority of the important section of our code.
@@ -73,6 +80,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             } else {
                 line = line.replacen("`", CODEBLOCK, 1);
                 code = true;
+            }
+        }
+
+        // Detecting struck-through text
+        while line.contains("~~") {
+            if struck {
+                line = line.replacen("~~", END_STRIKE, 1);
+                struck = false;
+            } else {
+                line = line.replacen("~~", STRIKE, 1);
+                struck = true;
             }
         }
 
